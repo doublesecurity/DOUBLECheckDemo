@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:loadBundle basename="resources.application" var="msg"/>
+
+<ui:composition template="/template.xhtml">
+  <ui:define name="content">
+    <section id="provisionToken">
+      <h2><h:outputText value="#{msg.provisionTokenHeading}"/></h2>
+      <p><h:outputText value="#{msg.provisionTokenMessage}"/></p>
+      <h3>Datos de Identificación del Usuario</h3>
+      <h:form>
+        <table class="form-frame">
+          <tr>
+            <td><h:outputLabel for="tenantIdfr" value="#{msg.tenantIdfrLabel}"/></td>
+            <td><h:inputText id="tenantIdfr" value="#{provisionToken.tenantIdfr}" required="true"/></td>
+          </tr>
+          <tr>
+            <td><h:outputLabel for="appIdfr" value="#{msg.appIdfrLabel}"/></td>
+            <td><h:inputText id="appIdfr" value="#{provisionToken.appIdfr}" required="true"/></td>
+          </tr>
+          <tr>
+            <td><h:outputLabel for="userIdfr" value="#{msg.userIdfrLabel}"/></td>
+            <td><h:inputText id="userIdfr" value="#{provisionToken.userIdfr}" required="true"/></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <h:commandButton id="provision" value="#{msg.provisionButtonLabel}" action="#{provisionToken.provisionToken}"/>
+              <h:button id="cancel" value="#{msg.cancelButtonLabel}" outcome="/pages/index.xhtml"/>
+            </td>
+          </tr>
+        </table>
+      </h:form>
+      <h3>Resultado</h3>
+      <p><h:outputText binding="#{provisionToken.result}" rendered="false"/></p>
+      <c:if test="#{provisionToken.provisionedTokenReady}">
+        <figure>
+          <img alt="TokenInfo QR Code" src="https://dev.apidoublecheck.com/v1/token/#{provisionToken.tokenIdfr}/qrInfo" />
+          <figcaption>Use su dispositivo para leer este código y preparar su token para generar claves.</figcaption>
+        </figure>
+      </c:if>
+      <h4>Mensajes</h4>
+      <p><h:messages /></p>
+    </section>
+  </ui:define>
+</ui:composition>
+
+</html>

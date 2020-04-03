@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:loadBundle basename="resources.application" var="msg"/>
+
+<h:head>
+  <title><h:outputText value="#{msg.appTitle}"/></title>
+  <meta charset="UTF-8"/>
+  <h:outputStylesheet library="style" name="DCdemo.css" />
+</h:head>
+
+<h:body>
+  <f:view>
+    
+    <div id="header">
+      <header>
+        <img src="#{resource['style:logoDC.png']}" alt="DOUBLECheck"/>
+        <h1><span class="double">DOUBLE</span>Check</h1>
+        <h2><h:outputText value="#{msg.headerSubtitle}"/></h2>
+      </header>
+    </div>
+    
+    <div id="navigation">
+      <c:if test="#{main.userLoggedIn}">
+        <nav>
+          <p><h:outputText value="#{msg.navigationHeading}"/></p>
+          <h:link outcome="/pages/createUser.xhtml"><h:outputText value="#{msg.createUserHeading}"/></h:link>
+          <h:link outcome="/pages/provisionToken.xhtml"><h:outputText value="#{msg.provisionTokenHeading}"/></h:link>
+          <h:link outcome="/pages/verifyPassword.xhtml"><h:outputText value="#{msg.verifyPasswordHeading}"/></h:link>
+          <h:form>
+            <h:commandLink value="Logout" action="#{main.logout}" />
+          </h:form>
+        </nav>
+      </c:if>   
+    </div>
+    
+    <div id="main">
+      <article>
+        <ui:insert name="content" />
+      </article>
+    </div>
+    
+  </f:view>
+</h:body>
+
+</html>

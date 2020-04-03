@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:loadBundle basename="resources.application" var="msg"/>
+
+<ui:composition template="/template.xhtml">
+  <ui:define name="content">
+    <section id="createUser">
+      <h2><h:outputText value="#{msg.createUserHeading}"/></h2>
+      <p><h:outputText value="#{msg.createUserMessage}"/></p>
+      <h3>Datos de Identificación del Usuario</h3>
+      <h:form>
+        <table class="form-frame">
+          <tr>
+            <td><h:outputLabel for="tenantIdfr" value="#{msg.tenantIdfrLabel}"/></td>
+            <td><h:inputText id="tenantIdfr" value="#{createUser.tenantIdfr}" required="true"/></td>
+          </tr>
+          <tr>
+            <td><h:outputLabel for="appIdfr" value="#{msg.appIdfrLabel}"/></td>
+            <td><h:inputText id="appIdfr" value="#{createUser.appIdfr}" required="true"/></td>
+          </tr>
+          <tr>
+            <td><h:outputLabel for="userIdfr" value="#{msg.userIdfrLabel}"/></td>
+            <td><h:inputText id="userIdfr" value="#{createUser.userIdfr}" required="true"/></td>
+          </tr>
+          <tr>
+            <td><h:outputLabel for="userName" value="#{msg.userNameLabel}"/></td>
+            <td><h:inputText id="userName" value="#{createUser.userName}" required="true"/></td>
+          </tr>
+          <tr>
+            <td><h:outputLabel for="userPhoneNumber" value="#{msg.userPhoneNumberLabel}"/></td>
+            <td><h:inputText id="userPhoneNumber" value="#{createUser.userPhoneNumber}"/></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <h:commandButton id="create" value="#{msg.createButtonLabel}" action="#{createUser.createUser}"/>
+              <h:button id="cancel" value="#{msg.cancelButtonLabel}" outcome="/pages/index.xhtml"/>
+            </td>
+          </tr>
+        </table>
+      </h:form>
+      <h3>Resultado</h3>
+      <p><h:outputText binding="#{createUser.result}" rendered="false"/></p>
+      <h4>Mensajes</h4>
+      <p><h:messages /></p>
+    </section>
+  </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,157 @@
+
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,500,600,700,800&display=swap');
+
+
+body {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+
+/*******************/
+/* Section: Header */
+/*******************/
+
+div#header {
+  height: 164px;
+  margin: 10px;
+  background: #005AA7;
+  border-radius: 0.5em;
+}
+
+header img {
+  float: left;
+  margin: 6px;
+  height: 152px;
+  width: 152px;
+}
+
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 28pt;
+  color: white;
+  text-align: center;
+  padding: 12px 0;
+}
+
+header h1 .double {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 20pt;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+
+/***********************/
+/* Section: Navigation */
+/***********************/
+
+div#navigation {
+  position: absolute;
+  left: 0;
+  width: 20%
+}
+
+#navigation nav {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  margin: 10px;
+  border: solid thick #005AA7;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+#navigation nav p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: larger;
+  text-align: center;
+  color: #8A8A8D;
+}
+
+#navigation nav a {
+  display: block;
+  margin: 0.5em;
+  padding: 0.25em;
+  color: #005AA7;
+}
+
+#navigation nav a:hover {
+  background: #005AA7;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+
+/*****************/
+/* Section: Main */
+/*****************/
+
+div#main {
+  position: absolute;
+  right: 0;
+  width: 80%
+}
+
+div#main > article {
+  margin: 10px;
+}
+
+#main h2 {
+  background: #EEEDEC;
+  border-style: none;
+  border-radius: 1em;
+  padding: 0.5em 2.5em;
+  margin: 0 0.5in;
+  text-align: center;
+  color: #005AA7;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 24pt;
+}
+
+#main h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20pt;
+  color: #005AA7;
+  margin: 12pt 0.25in 0;
+}
+
+#main h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18pt;
+  color: #8A8A8D;
+  margin: 12pt 0 0;
+}
+
+.form-frame {
+  background: silver;
+  margin: 10px 25px;
+  border: solid black;
+  padding: 10px 25px;
+}
+
+.form-frame input {
+  margin: 0 15px;
+}
+
+.form-frame label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 10pt;
+} 
