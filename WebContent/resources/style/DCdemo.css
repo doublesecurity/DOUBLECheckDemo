@@ -146,8 +146,8 @@ div#main > article {
   padding: 10px 25px;
 }
 
-.form-frame input {
-  margin: 0 15px;
+.form-frame input, .form-frame button {
+  margin: 5px 15px;
 }
 
 .form-frame label {
