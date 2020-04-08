@@ -156,3 +156,12 @@ div#main > article {
   font-weight: 500;
   font-size: 10pt;
 } 
+
+.form-frame .action-button {
+  color: white;
+  font-weight: bold;
+  background: #005AA7;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
