@@ -20,6 +20,7 @@ div#header {
   margin: 10px;
   background: #005AA7;
   border-radius: 0.5em;
+  box-shadow: 5px 5px 4px rgba(176,176,176,0.5); 
 }
 
 header img {
@@ -73,7 +74,7 @@ div#navigation {
   overflow: hidden;
 }
 
-#navigation nav p {
+#navigation nav h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: larger;

@@ -9,14 +9,12 @@
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<f:loadBundle basename="resources.application" var="msg"/>
-
 <ui:composition template="/template.xhtml">
   <ui:define name="content">
     <section id="createUser">
-      <h2><h:outputText value="#{msg.createUserHeading}"/></h2>
-      <p><h:outputText value="#{msg.createUserMessage}"/></p>
-      <h3>Datos de Identificación del Usuario</h3>
+      <h2>#{msg.createUserHeading}</h2>
+      <p>#{msg.createUserMessage}</p>
+      <h3>#{msg.createUserSubheading}</h3>
       <h:form>
         <table class="form-frame">
           <tr>
@@ -41,15 +39,15 @@
           </tr>
           <tr>
             <td colspan="2" align="center">
-              <h:commandButton id="create" value="#{msg.createButtonLabel}" action="#{createUser.createUser}"/>
               <h:button id="cancel" value="#{msg.cancelButtonLabel}" outcome="/pages/index.xhtml"/>
+              <h:commandButton id="create" value="#{msg.createButtonLabel}" action="#{createUser.createUser}"/>
             </td>
           </tr>
         </table>
       </h:form>
-      <h3>Resultado</h3>
+      <h3>#{msg.resultsSubheading}</h3>
       <p><h:outputText binding="#{createUser.result}" rendered="false"/></p>
-      <h4>Mensajes</h4>
+      <h4>#{msg.messagesSubheading}</h4>
       <p><h:messages /></p>
     </section>
   </ui:define>

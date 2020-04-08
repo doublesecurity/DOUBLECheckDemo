@@ -7,10 +7,19 @@
     version="2.1">
   
   <application>
+  
     <message-bundle>resources.application</message-bundle>
+    
+    <resource-bundle>
+      <base-name>resources.application</base-name>
+      <var>msg</var>
+    </resource-bundle>
+    
     <locale-config>
       <default-locale>es</default-locale>
+      <supported-locale>en</supported-locale>
     </locale-config>
+    
   </application>
   
 </faces-config>

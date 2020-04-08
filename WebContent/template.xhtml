@@ -9,8 +9,6 @@
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<f:loadBundle basename="resources.application" var="msg"/>
-
 <h:head>
   <title><h:outputText value="#{msg.appTitle}"/></title>
   <meta charset="UTF-8"/>
@@ -31,7 +29,7 @@
     <div id="navigation">
       <c:if test="#{main.userLoggedIn}">
         <nav>
-          <p><h:outputText value="#{msg.navigationHeading}"/></p>
+          <h2>#{msg.navigationHeading}</h2>
           <h:link outcome="/pages/createUser.xhtml"><h:outputText value="#{msg.createUserHeading}"/></h:link>
           <h:link outcome="/pages/provisionToken.xhtml"><h:outputText value="#{msg.provisionTokenHeading}"/></h:link>
           <h:link outcome="/pages/verifyPassword.xhtml"><h:outputText value="#{msg.verifyPasswordHeading}"/></h:link>

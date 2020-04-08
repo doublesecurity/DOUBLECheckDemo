@@ -8,13 +8,11 @@
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<f:loadBundle basename="resources.application" var="msg"/>
-
 <ui:composition template="template.xhtml">
   <ui:define name="content">
-    <h2><h:outputText value="#{msg.loginHeading}"/></h2>
-    <p><h:outputText value="#{msg.loginMessage}"/></p>
-    <h3><h:outputText value="#{msg.loginSubheading}"/></h3>
+    <h2>#{msg.loginHeading}</h2>
+    <p>#{msg.loginMessage}</p>
+    <h3>#{msg.loginSubheading}</h3>
     <form action="j_security_check" method="post">
       <table class="form-frame">
         <tr>
@@ -33,10 +31,6 @@
         </tr>
       </table>
     </form>
-<!--     
-    <p class="other-links"><h:link outcome="/recoverPassword.html"><h:outputText value="#{msg.recoverPasswordLink}"/></h:link></p>
-    <p class="other-links"><h:outputText value="#{msg.signupLabel}"/> <h:link outcome="/signup.html"><h:outputText value="#{msg.signupLink}"/></h:link></p>
--->    
   </ui:define>
 </ui:composition>
 
