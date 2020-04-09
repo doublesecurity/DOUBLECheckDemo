@@ -20,7 +20,7 @@ div#header {
   margin: 10px;
   background: #005AA7;
   border-radius: 0.5em;
-  box-shadow: 5px 5px 4px rgba(176,176,176,0.5); 
+  box-shadow: 5px 5px 4px rgba(138, 138, 141, 0.5); 
 }
 
 header img {
@@ -71,6 +71,7 @@ div#navigation {
   margin: 10px;
   border: solid thick #005AA7;
   border-radius: 0.5em;
+  box-shadow: 5px 5px 4px rgba(138, 138, 141, 0.5); 
   overflow: hidden;
 }
 
