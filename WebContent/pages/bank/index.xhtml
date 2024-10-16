@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h:outputStylesheet library="app" name="DCDbank.css" target="head"/>
+    <h2><h:outputText value="#{msg.bankTitle}"/></h2>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="bank">
+
+      <f:param name="Application" value="BANK"/>
+      
+      <div id="bankHeaderBanner" class="p-grid p-jc-between p-ai-center">
+        <div class="p-col-4">
+          <div class="p-grid p-jc-start p-ai-center">
+            <p:graphicImage library="app" name="logoBank.png" styleClass="headerLogo"/>
+            <h:outputText value="MI BANCO" styleClass="headerTitle"/>
+          </div>
+        </div>
+        <div class="p-col-8">
+          <div class="p-grid p-jc-end p-ai-end">
+            <h:outputText value="#{accessController.user}" rendered="#{accessController.userLoggedIn}" styleClass="headerUserName p-mr-3"/>
+            <h:link outcome="login" rendered="#{not accessController.userLoggedIn}" styleClass="headerBancaDigital"><h:outputText value="Banca Digital"/></h:link>
+            <h:link outcome="secure/digital-bank" rendered="#{accessController.userLoggedIn}" styleClass="headerBancaDigital"><h:outputText value="Banca Digital"/></h:link>
+          </div>
+        </div>
+        
+        <div class="p-col-12">
+          <p:menubar autoDisplay="false">
+            <p:submenu label="Personas">
+              <p:menuitem value="Tarjetas de Crédito" url="#"/>
+              <p:menuitem value="Cuentas" url="#"/>
+              <p:menuitem value="Inversiones" url="#"/>
+              <p:menuitem value="Crédito Personal" url="#"/>
+              <p:menuitem value="Hipotecas" url="#"/>
+              <p:menuitem value="Seguros" url="#"/>
+            </p:submenu>
+            <p:submenu label="Empresas">
+              <p:menuitem value="Crédito para Proyectos" url="#"/>
+              <p:menuitem value="Inversiones y Tesorería" url="#"/>
+              <p:menuitem value="Nóminas" url="#"/>
+            </p:submenu>
+            <p:submenu label="Corporativo y Gobierno">
+              <p:menuitem value="Servicios" url="#"/>
+            </p:submenu>
+          </p:menubar>
+        </div>
+      </div>
+      
+      <div class="p-grid">
+        
+        <p:panel styleClass="p-col-10 p-m-3">
+          <p:panelGrid columns="2" styleClass="ui-noborder">
+            <p:graphicImage library="app" name="bankMainStoryDC.jpg" width="100%"/>
+            <p:panelGrid columns="1" styleClass="ui-noborder">
+              <h:outputText value="Mas seguridad para ti" styleClass="storyTitle"/>
+              <h:outputText value="En MI BANCO hemos implementado nuevas medidas de seguridad en nuestra Banca Digital para que tú hagas todas tus operaciones con confianza." styleClass="storyBody"/>
+              <p:button value="Mas Información" href="https://www.double-check.es"/>
+            </p:panelGrid>
+          </p:panelGrid>
+        </p:panel>
+        
+        <p:panel styleClass="p-col-10 p-m-3">
+          <p:panelGrid columns="2" styleClass="ui-noborder">
+            <p:graphicImage library="app" name="bankMainStoryCreditCard.jpg" width="100%"/>
+            <p:panelGrid columns="1" styleClass="ui-noborder">
+              <h:outputText value="Tarjetas de Crédito" styleClass="storyTitle"/>
+              <h:outputText value="Tenemos la tarjeta de crédito a tu medida, para que la uses como tú prefieras." styleClass="storyBody"/>
+              <p:button value="Mas Información"/>
+            </p:panelGrid>
+          </p:panelGrid>
+        </p:panel>
+        
+        <p:panel styleClass="p-col-10 p-m-3">
+          <p:panelGrid columns="2" styleClass="ui-noborder">
+            <p:graphicImage library="app" name="bankMainStoryAccount.jpg" width="100%"/>
+            <p:panelGrid columns="1" styleClass="ui-noborder">
+              <h:outputText value="Cuentas" styleClass="storyTitle"/>
+              <h:outputText value="En MI BANCO puedes abrir una cuenta que te permitirá manejar tu dinero a tu manera." styleClass="storyBody"/>
+              <p:button value="Mas Información"/>
+            </p:panelGrid>
+          </p:panelGrid>
+        </p:panel>
+        
+        <p:panel styleClass="p-col-10 p-m-3">
+          <p:panelGrid columns="2" styleClass="ui-noborder">
+            <p:graphicImage library="app" name="bankMainStoryAuto.jpg" width="100%"/>
+            <p:panelGrid columns="1" styleClass="ui-noborder">
+              <h:outputText value="Crédito de Auto" styleClass="storyTitle"/>
+              <h:outputText value="El auto de tus sueños está a tu alcance, con las mejores condiciones para ti." styleClass="storyBody"/>
+              <p:button value="Mas Información"/>
+            </p:panelGrid>
+          </p:panelGrid>
+        </p:panel>
+        
+        <p:panel styleClass="p-col-10 p-m-3">
+          <p:panelGrid columns="2" styleClass="ui-noborder">
+            <p:graphicImage library="app" name="bankMainStoryMortgage.jpg" width="100%"/>
+            <p:panelGrid columns="1" styleClass="ui-noborder">
+              <h:outputText value="Hipotecas" styleClass="storyTitle"/>
+              <h:outputText value="Con la Hipoteca de MI BANCO estás listo para tener tu propia casa." styleClass="storyBody"/>
+              <p:button value="Mas Información"/>
+            </p:panelGrid>
+          </p:panelGrid>
+        </p:panel>
+        
+      </div>      
+      
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>

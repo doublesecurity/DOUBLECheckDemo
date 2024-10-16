@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h:outputStylesheet library="app" name="DCDbank.css" target="head"/>
+    <h2><h:outputText value="#{msg.bankTitle}"/></h2>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="bank">
+      
+      <f:param name="Application" value="BANK"/>
+      
+      <div id="bankHeaderBanner" class="p-grid p-jc-between p-ai-center">
+        <div class="p-col-4">
+          <h:link outcome="../index">
+            <div class="p-grid p-jc-start p-ai-center">
+              <p:graphicImage library="app" name="logoBank.png" styleClass="headerLogo"/>
+              <h:outputText value="MI BANCO" styleClass="headerTitle"/>
+            </div>
+          </h:link>
+        </div>
+        <div class="p-col-8">
+          <div class="p-grid p-jc-end p-ai-end">
+            <h:outputText value="#{accessController.user}" styleClass="headerUserName p-mr-3"/>
+            <h:form>
+              <p:commandLink action="#{accessController.logout}" styleClass="headerBancaDigital p-ac-end">
+                <h:outputText value="Salir"/>
+              </p:commandLink>
+            </h:form>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <p:breadCrumb lastItemDisabled="true">
+            <p:menuitem value="Home" outcome="digital-bank"/>
+            <p:menuitem value="Cuentas" outcome="digital-bank"/>
+            <p:menuitem value="Transferencia" url="#"/>
+          </p:breadCrumb>
+        </div>
+      </div>
+      
+      <div class="p-grid p-jc-center">
+      
+        <p:panel id="bankTransferPanel" styleClass="p-col-6 p-m-3">
+          
+          <f:facet name="header">
+            <h:outputText value="Transferencia de Fondos"/>
+          </f:facet>
+          
+          <p:chronoline value="#{bankTransfer.lifeCycle}" var="status" layout="horizontal">
+            <f:facet name="marker">
+              <span class="ui-chrono-marker p-shadow-2" style="background-color: #{status.color};">
+                <i class="#{status.icon}"/>
+              </span>
+            </f:facet>
+            <p:tag value="#{status.name}" styleClass="p-m-3" style="color: white; background-color: #{status.color};"/>
+          </p:chronoline>
+        
+          <h:form id="bankTransferForm">
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="sourceAccount" value="Cuenta Origen" styleClass="p-col-4"/>
+              <p:selectOneMenu id="sourceAccount" value="#{bankTransfer.sourceAccount}" required="true" rendered="#{bankTransfer.dataEntry}" styleClass="p-col-8">
+                <f:selectItem itemLabel="Seleccione una cuenta" itemValue=""/>
+                <f:selectItems value="#{bankAccountController.bankDepositAccountSelectionItems}"/>
+              </p:selectOneMenu>
+              <h:outputText value="#{bankTransfer.sourceAccount}" rendered="#{not bankTransfer.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="sourceAccount"/></div>
+            </div>
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="targetAccount" value="Cuenta Destino" styleClass="p-col-4"/>
+              <p:inputMask id="targetAccount" value="#{bankTransfer.targetAccount}" mask="aa99 9999 9999 9999 9999 9999" required="true" rendered="#{bankTransfer.dataEntry}" styleClass="p-col-8"/>
+              <h:outputText value="#{bankTransfer.targetAccount}" rendered="#{not bankTransfer.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="targetAccount"/></div>
+            </div>
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="ammount" value="Cantidad" styleClass="p-col-4"/>
+              <p:inputNumber id="ammount" value="#{bankTransfer.ammount}" required="true" symbol=" EUR" symbolPosition="s" rendered="#{bankTransfer.dataEntry}" styleClass="p-col-8"/>
+              <h:outputText value="#{bankTransfer.ammount}" rendered="#{not bankTransfer.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="ammount"/></div>
+            </div>
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="reference" value="Referencia" styleClass="p-col-4"/>
+              <p:inputText id="reference" value="#{bankTransfer.reference}" rendered="#{bankTransfer.dataEntry}" styleClass="p-col-8"/>
+              <h:outputText value="#{bankTransfer.reference}" rendered="#{not bankTransfer.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="reference"/></div>
+            </div>
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="concept" value="Concepto" styleClass="p-col-4"/>
+              <p:inputText id="concept" value="#{bankTransfer.concept}" rendered="#{bankTransfer.dataEntry}" styleClass="p-col-8"/>
+              <h:outputText value="#{bankTransfer.concept}" rendered="#{not bankTransfer.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="concept"/></div>
+            </div>
+  
+            <c:if test="#{bankTransfer.authorization}">
+              <div class="p-field p-grid">
+                <h:outputText value="#{msg.bankTransactionAuthorize}" styleClass="p-col-10 info-msg"/>
+                <p:outputLabel for="doubleCheck" value="#{msg.doubleCheckLabel}" styleClass="p-col-4"/>
+                <p:inputText 
+                  id="doubleCheck" 
+                  value="#{bankTransfer.dcPassword}" 
+                  required="true" 
+                  maxlength="8" 
+                  placeholder="●●●●●●●●" 
+                  autocomplete="one-time-code" 
+                  styleClass="dc-input p-col-8"/>
+                <p:keyFilter for="doubleCheck" mask="pint"/>
+                <div class="p-offset-4 p-col-8"><p:message for="doubleCheck"/></div>
+              </div>
+            </c:if>
+  
+            <div class="p-field p-grid p-jc-center">
+              <p:messages globalOnly="true" showSummary="true" showDetail="true" styleClass="p-col-10"/>
+            </div>
+  
+            <div class="p-field p-d-flex p-jc-evenly">
+              <p:button value="Cancelar" outcome="digital-bank" rendered="#{not bankTransfer.finished}" styleClass="p-m-2 ui-button-secondary"/>
+              <p:commandButton value="Continuar" action="#{bankTransfer.submit}" update="bankTransferPanel" rendered="#{bankTransfer.dataEntry}" styleClass="p-m-2"/>
+              <p:commandButton value="Confirmar" action="#{bankTransfer.authorize}" update="bankTransferPanel" rendered="#{bankTransfer.authorization}" styleClass="p-m-2"/>
+              <p:button value="#{msg.finishButtonLabel}" outcome="digital-bank" rendered="#{bankTransfer.finished}" styleClass="p-m-2"/>
+            </div>
+            
+          </h:form>
+        </p:panel>
+        
+      </div>
+      
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>

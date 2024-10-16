@@ -1,0 +1,225 @@
+@charset "UTF-8";
+
+/***************************/
+/*  DOUBLECheck Bank Demo  */
+/***************************/
+
+
+#bank .ui-widget {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#bank .headerLogo {
+  width: 36pt;
+  height: 36pt;
+  margin-left: 1em;
+}
+
+#bank .headerTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20pt;
+  color: #8A8A8D;
+  margin: 0 0.25em;
+  text-decoration: none;
+}
+
+#bankHeaderBanner {
+  margin-bottom: 12pt;
+}
+
+#bankHeaderBanner a:link, #bankHeaderBanner a:visited {
+  text-decoration: none;
+}
+
+#bank .headerUserName {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #B5D057;
+  background: none; 
+  margin: 0 1em;
+  padding: 0.5em;
+  padding-bottom: 0;
+  text-decoration: none;
+}
+
+#bank .headerBancaDigital {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16pt;
+  color: white;
+  background-color: #B5D057; 
+  margin: 0 1em;
+  padding: 0.5em;
+  text-decoration: none;
+  border-radius: 0.5em;
+}
+
+#bank .ac-accessories {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 10pt;
+  color: #B5D057;
+  text-decoration: none;
+}
+
+#bank .ac-accessories:hover {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+#bank .ui-menubar {
+  background-color: #EEEDEC;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+}
+
+#bank .ui-breadcrumb {
+  background-color: #EEEDEC;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+}
+
+#bank .ui-menu {
+  background-color: #EEEDEC;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+}
+
+#bank .ui-menuitem-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: smaller;
+  color: #0070B8;
+}
+
+#bank .storyTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18pt;
+  color: #0070B8;
+}
+
+#bank .storyBody {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+#bank .ui-outputlabel-rfi {
+  margin-left: .25em;
+  color: maroon;
+}
+
+#bank .ui-entered-data {
+  font-weight: 500;
+}
+
+#bank .dc-input {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  font-size: xx-large;
+  font-kerning: none;
+  letter-spacing: 0.25em;
+  padding-right: 0;
+  padding-left: .5em;
+  padding-top: .12em;
+  padding-bottom: .12em;
+  width: 7.75em;
+}
+
+#bank .ui-message {
+  font-size: small;
+}
+
+#bank .ui-button {
+  color: white;
+  border-style: none;
+  background-color: #0070B8;
+  background-image: none;
+}
+
+#bank .ui-button-secondary {
+  color: #0070B8;
+  border: solid 1pt #0070B8;
+  background: none;
+}
+
+#bank .ui-button-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 14pt;
+}
+
+#bank .ui-panel {
+  border: solid 2pt #0070B8;
+  border-radius: 4px;
+}
+
+#bank .ui-panel-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18pt;
+  color: white;
+  margin: 12pt 0;
+  text-shadow: none;
+}
+
+#bank .ui-panel-titlebar {
+  border-style: none;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #0070B8;
+  background-image: none;
+}
+
+#bank .ui-panel-content {
+  border-style: none;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+#bank .ui-card-content {
+  text-align: center;
+}
+
+#bank .ui-card-content img {
+  width: 64px;
+  height: 64px;
+}
+
+#bank .ui-card-footer {
+  text-align: center;
+}
+
+#bank .ui-datatable thead th {
+  background-color: #0070B8;
+  color: white;
+}
+
+#bank .ui-datatable .ui-datatable-headerrow {
+  color: #0070B8;
+}
+
+#bank .ui-chrono-marker{
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+#bank .ui-chronoline {
+  margin: 0 10%;
+}
+
+#bank .ui-chronoline-event-opposite {
+  padding: 0;
+  height: 0;
+}

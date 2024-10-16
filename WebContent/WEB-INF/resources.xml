@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+  <!--  DataSource deployment configuration  -->
+  <!--  Use URL on:
+  				Local     ===>  
+  				                jdbcUrl=jdbc:mysql://localhost:3306/DCDemoDB?serverTimezone=UTC
+  				                userName=dcd
+  				                password=demo
+  				                
+  				AWS-dev   ===>  
+  				                jdbcUrl=jdbc:mysql://localhost:3306/DCDemoDB?serverTimezone=UTC
+  				                userName=dcd
+  				                password=DCDemo2022$
+  				                
+  				Docker    ===>  
+  				                jdbcUrl=jdbc:mysql://mysql:3306/DCDemoDB?serverTimezone=UTC
+  				                userName=dcd
+  				                password=DCDemo2022$
+  -->  				              
+  <Resource 
+      id="jdbc/DCDemoDS" 
+      type="javax.sql.DataSource"  
+      auth="Container">
+    jtaManaged=true
+    jdbcDriver=com.mysql.jdbc.Driver
+    jdbcUrl=jdbc:mysql://localhost:3306/DCDemoDB?serverTimezone=UTC
+    userName=dcd
+    password=DCDemo2022$
+    maxActive=100
+    maxIdle=30
+    validationQuery=/* ping */
+    testOnBorrow=true
+    testWhileIdle=true
+    timeBetweenEvictionRunsMillis=10000
+    minEvictableIdleTimeMillis=60000
+  </Resource>
+  
+</resources>

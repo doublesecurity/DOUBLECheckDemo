@@ -7,47 +7,48 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
 
 <h:head>
   <title><h:outputText value="#{msg.appTitle}"/></title>
   <meta charset="UTF-8"/>
+  <h:outputStylesheet library="prime" name="primeflex.min.css" />
   <h:outputStylesheet library="style" name="DCdemo.css" />
   <link rel="shortcut icon" type="image/png" href="#{resource['style:iconDC.png']}" />
 </h:head>
 
 <h:body>
-  <f:view>
     
-    <div id="header">
-      <header>
-        <img src="#{resource['style:logoDC.png']}" alt="DOUBLECheck"/>
-        <h1><span class="double">DOUBLE</span>Check</h1>
-        <h2><h:outputText value="#{msg.headerSubtitle}"/></h2>
-      </header>
-    </div>
+  <div id="header">
+    <header>
+      <h:link outcome="/pages/index.xhtml">
+        <h:graphicImage alt="DOUBLECheck" library="style" name="logoDC.png"/>
+      </h:link>
+      <h1><h:outputText value="#{msg.headerTitle}"/></h1>
+      <ui:insert name="header" />
+    </header>
+  </div>
+  
+  <div id="navigation">
+    <c:if test="#{accessController.userLoggedIn}">
+      <nav>
+        <h2><h:outputText value="#{msg.navigationHeading}"/></h2>
+        <ui:insert name="navigation" />
+        <h:form>
+          <p:commandLink value="Salir" action="#{accessController.logout}" />
+        </h:form>
+      </nav>
+    </c:if>   
+  </div>
+  
+  <div id="content">
+    <article>
+      <ui:insert name="content" />
+    </article>
+  </div>
     
-    <div id="navigation">
-      <c:if test="#{main.userLoggedIn}">
-        <nav>
-          <h2>#{msg.navigationHeading}</h2>
-          <h:link outcome="/pages/createUser.xhtml"><h:outputText value="#{msg.createUserHeading}"/></h:link>
-          <h:link outcome="/pages/provisionToken.xhtml"><h:outputText value="#{msg.provisionTokenHeading}"/></h:link>
-          <h:link outcome="/pages/verifyPassword.xhtml"><h:outputText value="#{msg.verifyPasswordHeading}"/></h:link>
-          <h:form>
-            <h:commandLink value="Logout" action="#{main.logout}" />
-          </h:form>
-        </nav>
-      </c:if>   
-    </div>
-    
-    <div id="main">
-      <article>
-        <ui:insert name="content" />
-      </article>
-    </div>
-    
-  </f:view>
+  <ui:debug/>
 </h:body>
 
 </html>

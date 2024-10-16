@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h:outputStylesheet library="app" name="DCDbank.css" target="head"/>
+    <h2><h:outputText value="#{msg.bankTitle}"/></h2>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="bank">
+      
+      <f:param name="Application" value="BANK"/>
+      
+      <div id="bankHeaderBanner" class="p-grid p-jc-between p-ai-center">
+        <div class="p-col-4">
+          <h:link outcome="../index">
+            <div class="p-grid p-jc-start p-ai-center">
+              <p:graphicImage library="app" name="logoBank.png" styleClass="headerLogo"/>
+              <h:outputText value="MI BANCO" styleClass="headerTitle"/>
+            </div>
+          </h:link>
+        </div>
+        <div class="p-col-8">
+          <div class="p-grid p-jc-end p-ai-end">
+            <h:outputText value="#{accessController.user}" styleClass="headerUserName p-mr-3"/>
+            <h:form>
+              <p:commandLink action="#{accessController.logout}" styleClass="headerBancaDigital p-ac-end">
+                <h:outputText value="Salir"/>
+              </p:commandLink>
+            </h:form>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <p:breadCrumb lastItemDisabled="true">
+            <p:menuitem value="Home" outcome="digital-bank"/>
+            <p:menuitem value="Cuentas" url="#"/>
+          </p:breadCrumb>
+        </div>
+      </div>
+      
+      <div class="p-grid">
+        
+        <div class="p-col-6">
+          <h:form>
+            <p:dataTable id="bankAccounts" var="bankAccount" value="#{bankAccountController.bankAccounts}" sortBy="#{bankAccount.type}">
+              <p:headerRow field="type" expandable="true">
+                <p:column colspan="2">
+                  <h:outputText value="#{bankAccount.type}"/>
+                </p:column>
+              </p:headerRow>
+              <p:column headerText="Cuenta" width="70%">
+                <h:outputText value="#{bankAccount.idfr}"/>
+              </p:column>
+              <p:column headerText="Saldo" width="30%">
+                <h:outputText value="#{bankAccount.balance}"/>
+              </p:column>
+            </p:dataTable>
+          </h:form>
+        </div>
+        
+        <div id="operations" class="p-col-6">
+          <div class="p-grid">
+            <p:link outcome="bank-transfer" styleClass="p-col-5 p-m-2">
+              <p:card subtitle="Transferencias">
+                <p:graphicImage library="app" name="bankTransferIcon.png"/>
+              </p:card>
+            </p:link>
+            <p:link outcome="bank-payment" styleClass="p-col-5 p-m-2">
+              <p:card subtitle="Pagos">
+                <p:graphicImage library="app" name="bankPaymentIcon.png"/>
+              </p:card>
+            </p:link>
+            <p:link outcome="digital-bank" styleClass="p-col-5 p-m-2">
+              <p:card subtitle="Estado de Cuenta">
+                <p:graphicImage library="app" name="bankStatementIcon.png"/>
+              </p:card>
+            </p:link>
+            <p:link outcome="bank-investment" styleClass="p-col-5 p-m-2">
+              <p:card subtitle="Inversiones">
+                <p:graphicImage library="app" name="bankInvestmentIcon.png"/>
+              </p:card>
+            </p:link>
+            <p:link outcome="digital-bank" styleClass="p-col-5 p-m-2">
+              <p:card subtitle="Depositos">
+                <p:graphicImage library="app" name="bankDepositIcon.png"/>
+              </p:card>
+            </p:link>
+            <p:link outcome="digital-bank" styleClass="p-col-5 p-m-2">
+              <p:card subtitle="Retiros">
+                <p:graphicImage library="app" name="bankWithdrawalIcon.png"/>
+              </p:card>
+            </p:link>
+          </div>
+        </div>
+        
+      </div>
+      
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>

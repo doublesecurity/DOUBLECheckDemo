@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h:outputStylesheet library="app" name="DCDbank.css" target="head"/>
+    <h2><h:outputText value="#{msg.bankTitle}"/></h2>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="bank">
+    
+      <f:param name="Application" value="BANK"/>
+      
+      <div id="bankHeaderBanner" class="p-grid p-jc-between p-ai-center">
+        <div class="p-col-4">
+          <h:link outcome="index">
+            <div class="p-grid p-jc-start p-ai-center">
+              <p:graphicImage library="app" name="logoBank.png" styleClass="headerLogo"/>
+              <h:outputText value="MI BANCO" styleClass="headerTitle"/>
+            </div>
+          </h:link>
+        </div>
+      </div>
+      
+      <section id="login">
+        <div class="p-grid p-jc-center">
+          
+          <p:panel id="loginPanel" styleClass="p-col-6 p-m-3">
+            <f:facet name="header">
+              <h:outputText value="#{msg.loginHeading}"/>
+            </f:facet>
+            
+            <h:form id="loginForm" prependId="false">
+                
+                <div class="p-field p-grid">
+                  <p:outputLabel for="userIdfr" value="#{msg.userIdfrLabel}" styleClass="p-col-4"/>
+                  <p:inputText id="userIdfr" value="#{accessController.userIdfr}" required="true" autocomplete="username" styleClass="p-col-8"/>
+                  <div class="p-col-8 p-offset-4"><p:message for="userIdfr"/></div>
+                </div>
+                
+                <div class="p-field p-grid">
+                  <p:outputLabel for="password" value="#{msg.passwordLabel}" styleClass="p-col-4"/>
+                  <p:password id="password" value="#{accessController.password}" required="true" autocomplete="current-password" styleClass="p-col-8"/>
+                  <div class="p-col-8 p-offset-4"><p:message for="password"/></div>
+                </div>
+                
+                <div class="p-field p-grid">
+                  <p:outputLabel for="doubleCheck" value="#{msg.doubleCheckLabel}" styleClass="p-col-4"/>
+                  <p:inputText 
+                    id="doubleCheck" 
+                    value="#{accessController.doubleCheckPassword}" 
+                    required="true" 
+                    maxlength="8" 
+                    autocomplete="one-time-code" 
+                    styleClass="dc-input p-col-8"/>
+                  <p:keyFilter for="doubleCheck" mask="pint"/>
+                  <div class="p-col-8 p-offset-4"><p:message for="doubleCheck"/></div>
+                </div>
+                
+                <div class="p-field p-grid p-jc-center">
+                  <p:commandButton id="loginAction" value="#{msg.loginButtonLabel}" action="#{accessController.login}" update="loginForm"/>
+                  <p:messages globalOnly="true" showSummary="true" showDetail="false" styleClass="p-col-10"/>
+                </div>
+              
+            </h:form>
+            
+            <f:facet name="footer">
+              <div class="p-text-center"><h:link outcome="signup" styleClass="ac-accessories"><h:outputText value="¿No tiene un registro?"/></h:link></div>
+            </f:facet>
+
+          </p:panel>
+
+        </div>
+      </section>
+      
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>

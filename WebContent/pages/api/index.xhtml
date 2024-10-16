@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h2><h:outputText value="#{msg.apiTitle}"/></h2>
+  </ui:define>
+  
+  <ui:define name="navigation">
+    <ui:include src="api-menu-options.xhtml"/>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="apiMain">
+      <h2><h:outputText value="#{msg.apiMainHeading}"/></h2>
+      <p><h:outputText value="#{msg.apiMainMessage}"/></p>
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>

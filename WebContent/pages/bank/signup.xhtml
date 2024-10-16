@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h:outputStylesheet library="app" name="DCDbank.css" target="head"/>
+    <h2><h:outputText value="#{msg.bankTitle}"/></h2>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="bank">
+    
+      <f:param name="Application" value="BANK"/>
+      
+      <div id="bankHeaderBanner" class="p-grid p-jc-between p-ai-center">
+        <div class="p-col-5">
+          <h:link outcome="/pages/bank/index.xhtml"><div class="p-grid p-jc-start p-ai-center">
+            <p:graphicImage library="app" name="logoBank.png" styleClass="headerLogo"/>
+            <h:outputText value="MI BANCO" styleClass="headerTitle"/>
+          </div></h:link>
+        </div>
+      </div>
+      
+      <section id="signup">
+        <div class="p-grid p-jc-center">
+          
+          <p:panel id="signupPanel" styleClass="p-col-8 p-m-3">
+            <f:facet name="header">
+              <h:outputText value="#{msg.signupHeading}"/>
+            </f:facet>
+            
+            <h:form id="signupForm" prependId="false">
+                
+                <div class="p-field p-grid">
+                  <p:outputLabel for="userIdfr" value="#{msg.userIdfrLabel}" styleClass="p-col-4"/>
+                  <p:inputText id="userIdfr" value="#{signupController.userIdfr}" required="true" autocomplete="username" rendered="#{signupController.createUserStatus}" styleClass="p-col-8"/>
+                  <h:outputText value="#{signupController.userIdfr}" rendered="#{signupController.provisionTokenStatus}" styleClass="p-col-8 ui-entered-data"/>
+                  <div class="p-col-8 p-offset-4"><p:message for="userIdfr"/></div>
+                </div>
+                
+                <c:if test="#{signupController.createUserStatus}">
+                  <div class="p-field p-grid">
+                    <p:outputLabel for="userName" value="#{msg.userNameLabel}" styleClass="p-col-4"/>
+                    <p:inputText id="userName" value="#{signupController.userName}" required="true" autocomplete="given-name" styleClass="p-col-8"/>
+                    <div class="p-col-8 p-offset-4"><p:message for="userName"/></div>
+                  </div>
+                  
+                  <div class="p-field p-grid">
+                    <p:outputLabel for="userLastname" value="#{msg.userLastnameLabel}" styleClass="p-col-4"/>
+                    <p:inputText id="userLastname" value="#{signupController.userLastname}" required="true" autocomplete="family-name" styleClass="p-col-8"/>
+                    <div class="p-col-8 p-offset-4"><p:message for="userLastname"/></div>
+                  </div>
+                
+                  <div class="p-field p-grid">
+                    <p:outputLabel for="newPassword" value="#{msg.newPasswordLabel}" styleClass="p-col-4"/>
+                    <p:password id="newPassword" value="#{signupController.newPassword}" required="true" autocomplete="new-password" styleClass="p-col-8"/>
+                    <div class="p-col-8 p-offset-4"><p:message for="newPassword"/></div>
+                  </div>
+                  
+                  <div class="p-field p-grid">
+                    <p:outputLabel for="verifyPassword" value="#{msg.verifyPasswordLabel}" styleClass="p-col-4"/>
+                    <p:password id="verifyPassword" value="#{signupController.verifyPassword}" required="true" autocomplete="new-password" styleClass="p-col-8"/>
+                    <div class="p-col-8 p-offset-4"><p:message for="verifyPassword"/></div>
+                  </div>
+                </c:if>
+                
+                <c:if test="#{signupController.provisionTokenStatus}">
+                  <div class="p-field p-grid p-jc-center">
+                    <h:outputText value="#{msg.signupProvisionTokenMessage}" styleClass="p-col-10"/>
+                    <p:graphicImage url="https://api.double-check.es/v1/token-service/#{signupController.tokenIdfr}/qrCode"/>
+                  </div>
+                </c:if>
+                
+                <div class="p-field p-grid p-jc-center">
+                  <p:button outcome="login" value="#{msg.cancelButtonLabel}" rendered="#{signupController.createUserStatus}" styleClass="p-m-2 ui-button-secondary"/>
+                  <p:commandButton id="signupAction" value="#{msg.signupButtonLabel}" action="#{signupController.signup}" update="signupForm" rendered="#{signupController.createUserStatus}" styleClass="p-m-2"/>
+                  <p:button outcome="login" value="#{msg.finishButtonLabel}" rendered="#{signupController.provisionTokenStatus}" styleClass="p-m-2"/>
+                  <p:messages globalOnly="true" showSummary="true" showDetail="true" styleClass="p-col-10"/>
+                </div>
+              
+            </h:form>
+            
+            <f:facet name="footer">
+              <div class="p-text-center"><h:link outcome="login" styleClass="ac-accessories"><h:outputText value="Entrar con mi UserId"/></h:link></div>
+            </f:facet>
+            
+          </p:panel>
+
+        </div>
+      </section>
+      
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>

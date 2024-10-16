@@ -31,42 +31,45 @@
   </error-page>
 
   <security-role>
-    <description>Generic user of ADSS web site</description>
-    <role-name>demo-user</role-name>
+    <description>Generic user of DEMO web site</description>
+    <role-name>USER</role-name>
   </security-role>
 
   <security-role>
-    <description>High security role for ADSS web site</description>
-    <role-name>demo-admin</role-name>
+    <description>High security role for DEMO web site</description>
+    <role-name>ADMIN</role-name>
   </security-role>
-<!-- 
+
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>ADSS Web Portal</web-resource-name>
+      <web-resource-name>DCDemo Web Portal</web-resource-name>
       <url-pattern>/*</url-pattern>
     </web-resource-collection>
     <user-data-constraint>
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
--->
+
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>ADSS Web Portal</web-resource-name>
-      <url-pattern>/pages/*</url-pattern>
+      <web-resource-name>DCDemo Web Portal</web-resource-name>
+      <url-pattern>/pages/bank/secure/*</url-pattern>
+      <url-pattern>/pages/lab/secure/*</url-pattern>
+      <url-pattern>/pages/shop/secure/*</url-pattern>
+      <url-pattern>/pages/api/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-      <role-name>demo-user</role-name>
-      <role-name>demo-admin</role-name>
+      <role-name>USER</role-name>
+      <role-name>ADMIN</role-name>
     </auth-constraint>
   </security-constraint>
 
   <login-config>
     <auth-method>FORM</auth-method>
-    <realm-name>DOUBLECheck</realm-name>
+    <realm-name>DOUBLECheck Demo</realm-name>
     <form-login-config>
-      <form-login-page>/login.xhtml</form-login-page>
-      <form-error-page>/loginerror.xhtml</form-error-page>
+      <form-login-page>/access/login.xhtml</form-login-page>
+      <form-error-page>/access/loginerror.xhtml</form-error-page>
     </form-login-config>
   </login-config>
 

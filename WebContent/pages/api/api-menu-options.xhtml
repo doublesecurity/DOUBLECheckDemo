@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+  
+  <div id="api-menu-options">
+    <h:link outcome="/pages/api/create-user.xhtml"><h:outputText value="#{msg.createUserHeading}"/></h:link>
+    <h:link outcome="/pages/api/provision-token.xhtml"><h:outputText value="#{msg.provisionTokenHeading}"/></h:link>
+    <h:link outcome="/pages/api/verify-password.xhtml"><h:outputText value="#{msg.verifyPasswordHeading}"/></h:link>
+  </div>
+
+</ui:composition>
+
+</html>

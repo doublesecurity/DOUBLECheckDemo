@@ -7,13 +7,62 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h2><h:outputText value="#{msg.headerSubtitle}"/></h2>
+  </ui:define>
+
   <ui:define name="content">
-    <section id="index">
-      <h2>#{msg.mainHeading}</h2>
-      <p>#{msg.mainMessage}</p>
+    <section id="main">
+      
+      <div class="p-grid p-jc-evenly">
+      
+      <p:panel styleClass="p-col-5 p-m-3" header="#{msg.bankTitle}">
+        <f:facet name="header">
+          <h:link outcome="/pages/bank/index.xhtml"><h:outputText value="#{msg.bankTitle}"/></h:link>
+        </f:facet>
+        <p:panelGrid columns="2" styleClass="ui-noborder">
+          <h:link outcome="/pages/bank/index.xhtml"><p:graphicImage alt="Bank Logo" library="app" name="logoBank.png"/></h:link>
+          <h:outputText value="#{msg.bankMainMessage}"/>
+        </p:panelGrid>
+      </p:panel>
+<!-- 
+      <p:panel styleClass="p-col-5 p-m-3" header="#{msg.labTitle}">
+        <f:facet name="header">
+          <h:link outcome="/pages/lab/index.xhtml"><h:outputText value="#{msg.labTitle}"/></h:link>
+        </f:facet>
+        <p:panelGrid columns="2" styleClass="ui-noborder">
+          <h:link outcome="/pages/lab/index.xhtml"><p:graphicImage alt="Lab Logo" library="app" name="logoLab.png"/></h:link>
+          <h:outputText value="#{msg.labMainMessage}"/>
+        </p:panelGrid>
+      </p:panel>
+
+      <p:panel styleClass="p-col-5 p-m-3" header="#{msg.shopTitle}">
+        <f:facet name="header">
+          <h:link outcome="/pages/shop/index.xhtml"><h:outputText value="#{msg.shopTitle}"/></h:link>
+        </f:facet>
+        <p:panelGrid columns="2" styleClass="ui-noborder">
+          <h:link outcome="/pages/shop/index.xhtml"><p:graphicImage alt="Shop Logo" library="app" name="logoShop.png"/></h:link>
+          <h:outputText value="#{msg.shopMainMessage}"/>
+        </p:panelGrid>
+      </p:panel>
+-->
+      <p:panel styleClass="p-col-5 p-m-3" header="#{msg.apiTitle}">
+        <f:facet name="header">
+          <h:link outcome="/pages/api/index.xhtml"><h:outputText value="#{msg.apiTitle}"/></h:link>
+        </f:facet>
+        <p:panelGrid columns="2" styleClass="ui-noborder">
+          <h:link outcome="/pages/api/index.xhtml"><p:graphicImage alt="DOUBLECheck Logo" library="app" name="logoAPI.png"/></h:link>
+          <h:outputText value="#{msg.apiMainMessage}"/>
+        </p:panelGrid>
+      </p:panel>
+      
+      </div>
+      
     </section>
   </ui:define>
 </ui:composition>

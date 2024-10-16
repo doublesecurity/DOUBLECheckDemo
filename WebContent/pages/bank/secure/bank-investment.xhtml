@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+  <ui:define name="header">
+    <h:outputStylesheet library="app" name="DCDbank.css" target="head"/>
+    <h2><h:outputText value="#{msg.bankTitle}"/></h2>
+  </ui:define>
+
+  <ui:define name="content">
+    <section id="bank">
+      
+      <f:param name="Application" value="BANK"/>
+      
+      <div id="bankHeaderBanner" class="p-grid p-jc-between p-ai-center">
+        <div class="p-col-4">
+          <h:link outcome="../index">
+            <div class="p-grid p-jc-start p-ai-center">
+              <p:graphicImage library="app" name="logoBank.png" styleClass="headerLogo"/>
+              <h:outputText value="MI BANCO" styleClass="headerTitle"/>
+            </div>
+          </h:link>
+        </div>
+        <div class="p-col-8">
+          <div class="p-grid p-jc-end p-ai-end">
+            <h:outputText value="#{accessController.user}" styleClass="headerUserName p-mr-3"/>
+            <h:form>
+              <p:commandLink action="#{accessController.logout}" styleClass="headerBancaDigital p-ac-end">
+                <h:outputText value="Salir"/>
+              </p:commandLink>
+            </h:form>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <p:breadCrumb lastItemDisabled="true">
+            <p:menuitem value="Home" outcome="digital-bank"/>
+            <p:menuitem value="Cuentas" outcome="digital-bank"/>
+            <p:menuitem value="Inversiones" url="#"/>
+          </p:breadCrumb>
+        </div>
+      </div>
+      
+      <div class="p-grid p-jc-center">
+      
+        <p:panel id="bankInvestmentPanel" styleClass="p-col-6 p-m-3">
+          
+          <f:facet name="header">
+            <h:outputText value="Inversiones"/>
+          </f:facet>
+          
+          <p:chronoline value="#{bankInvestment.lifeCycle}" var="status" layout="horizontal">
+            <f:facet name="marker">
+              <span class="ui-chrono-marker p-shadow-2" style="background-color: #{status.color};">
+                <i class="#{status.icon}"/>
+              </span>
+            </f:facet>
+            <p:tag value="#{status.name}" styleClass="p-m-3" style="color: white; background-color: #{status.color};"/>
+          </p:chronoline>
+        
+          <h:form id="bankInvestmentForm">
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="relatedAccount" value="Cuenta Relacionada" styleClass="p-col-4"/>
+              <p:selectOneMenu id="relatedAccount" value="#{bankInvestment.relatedAccount}" required="true" rendered="#{bankInvestment.dataEntry}" styleClass="p-col-8">
+                <f:selectItem itemLabel="Seleccione una cuenta" itemValue=""/>
+                <f:selectItems value="#{bankAccountController.bankDepositAccountSelectionItems}"/>
+              </p:selectOneMenu>
+              <h:outputText value="#{bankInvestment.relatedAccount}" rendered="#{not bankInvestment.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="relatedAccount"/></div>
+            </div>
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="operation" value="Operación" styleClass="p-col-4"/>
+              <p:selectOneMenu id="operation" value="#{bankInvestment.operationMode}" required="true" rendered="#{bankInvestment.dataEntry}" styleClass="p-col-8">
+                <f:selectItem itemLabel="Seleccione una operación" itemValue=""/>
+                <f:selectItems value="#{bankInvestment.operationModes}"/>
+              </p:selectOneMenu>
+              <h:outputText value="#{bankInvestment.operationMode}" rendered="#{not bankInvestment.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="operation"/></div>
+            </div>
+  
+            <div class="p-field p-grid">
+              <p:outputLabel for="ammount" value="Cantidad" styleClass="p-col-4"/>
+              <p:inputNumber id="ammount" value="#{bankInvestment.ammount}" required="true" symbol=" EUR" symbolPosition="s" rendered="#{bankInvestment.dataEntry}" styleClass="p-col-8"/>
+              <h:outputText value="#{bankInvestment.ammount}" rendered="#{not bankInvestment.dataEntry}" styleClass="p-col-8 ui-entered-data"/>
+              <div class="p-offset-4 p-col-8"><p:message for="ammount"/></div>
+            </div>
+  
+            <c:if test="#{bankInvestment.authorization}">
+              <div class="p-field p-grid">
+                <h:outputText value="#{msg.bankTransactionAuthorize}" styleClass="p-col-10 info-msg"/>
+                <p:outputLabel for="doubleCheck" value="#{msg.doubleCheckLabel}" styleClass="p-col-4"/>
+                <p:inputText 
+                  id="doubleCheck" 
+                  value="#{bankInvestment.dcPassword}" 
+                  required="true" 
+                  maxlength="8" 
+                  placeholder="●●●●●●●●" 
+                  autocomplete="one-time-code" 
+                  styleClass="dc-input p-col-8"/>
+                <p:keyFilter for="doubleCheck" mask="pint"/>
+                <div class="p-offset-4 p-col-8"><p:message for="doubleCheck"/></div>
+              </div>
+            </c:if>
+  
+            <div class="p-field p-grid p-jc-center">
+              <p:messages globalOnly="true" showSummary="true" showDetail="true" styleClass="p-col-10"/>
+            </div>
+  
+            <div class="p-field p-d-flex p-jc-evenly">
+              <p:button value="Cancelar" outcome="digital-bank" rendered="#{not bankInvestment.finished}" styleClass="p-m-2 ui-button-secondary"/>
+              <p:commandButton value="Continuar" action="#{bankInvestment.submit}" update="bankInvestmentPanel" rendered="#{bankInvestment.dataEntry}" styleClass="p-m-2"/>
+              <p:commandButton value="Confirmar" action="#{bankInvestment.authorize}" update="bankInvestmentPanel" rendered="#{bankInvestment.authorization}" styleClass="p-m-2"/>
+              <p:button value="#{msg.finishButtonLabel}" outcome="digital-bank" rendered="#{bankInvestment.finished}" styleClass="p-m-2"/>
+            </div>
+            
+          </h:form>
+        </p:panel>
+        
+      </div>
+      
+    </section>
+  </ui:define>
+
+</ui:composition>
+
+</html>
